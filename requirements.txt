@@ -5,3 +5,5 @@ gunicorn==20.1.0  # Optional: For production deployment
 Flask-Cors==3.0.10  # Optional: For handling CORS
 Flask-Session==0.4.0  # Optional: For session management
 Flask-SQLAlchemy==2.5.1  # Optional: For ORM support
+requests 
+bs4

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery-made by Vsk</title>
+    
+    <style>
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        #header {
+            background-color: #4285f4;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #gallery-container {
+            display: flex;
+             flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            margin-top: -19px;
+        }
+
+        .image-card {
+            margin: 10px;
+            text-align: center;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-details {
+            margin-top: 10px;
+        }
+
+        .download-link {
+            display: block;
+            margin-top: 5px;
+            color: #4285f4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Image Gallery<h4>made by vishal karhad</h4></h1>
+        <form action="/search" method="POST">
+            <input type="text" name="q" placeholder="Search Images">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <!-- {% for i in name1 %} -->
+    <div id="gallery-container">
+        <!-- <div class="image-card">
+            <img src="{{i['src']}}[:1]" alt="name 1">
+            <div class="image-details">
+                <p>{{image_name}}</p>
+                <a href="{{i['src']}}[:1]" class="download-link">Download</a>
+            </div>
+        </div> -->
+        <!-- {% endfor %} -->
+    {% for i in name1 %}
+    <div class="image-card">
+            <img src="{{i['src']}}" alt={{image_name}}>
+            <div class="image-details">
+                <p>{{image_name}}</p>
+                <a href="{{i['src']}}" class="download-link">Download</a> 
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Add more image cards as needed -->
+
+    </div>
+</body>
+</html>
