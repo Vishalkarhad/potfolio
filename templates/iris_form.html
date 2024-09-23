@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iris Flower Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/iris_styles.css') }}">
+</head>
+<body>
+    <h1>Iris Flower Prediction</h1>
+    <form action="/predict" method="POST">
+        <label for="sepal_length">Sepal Length (cm):</label>
+        <input type="text" id="sepal_length" name="sepal_length" required><br>
+        
+        <label for="sepal_width">Sepal Width (cm):</label>
+        <input type="text" id="sepal_width" name="sepal_width" required><br>
+        
+        <label for="petal_length">Petal Length (cm):</label>
+        <input type="text" id="petal_length" name="petal_length" required><br>
+        
+        <label for="petal_width">Petal Width (cm):</label>
+        <input type="text" id="petal_width" name="petal_width" required><br>
+        
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+    <div class="output">
+        <h2>Prediction: {{ prediction }}</h2>
+        <img src="{{ url_for('static', filename='images/'+ prediction + '.jfif') }}" alt="{{ prediction }}">
+    </div>
+    {% endif %}
+</body>
+</html>
