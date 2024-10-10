@@ -10,3 +10,4 @@ scipy
 soupsieve
 urllib3
 gunicorn
+selenium

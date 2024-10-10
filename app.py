@@ -8,7 +8,28 @@ import numpy
 from joblib import dump,load
 from sklearn.datasets import load_iris
 
+from flask import Flask, render_template_string
+from selenium import webdriver
+from threading import Thread
+import time
+
 app= Flask(__name__)
+#code for refresh the website
+def run_selenium():
+    # Set up the WebDriver (make sure to specify the correct path to your WebDriver)
+    driver = webdriver.Chrome(executable_path='path/to/chromedriver')  # Update with your path
+    driver.get('https://vishalkarhad-cv.onrender.com')  # Change if needed
+
+    try:
+        while True:
+            time.sleep(240)  # Wait for 4 minutes
+            driver.refresh()  # Refresh the webpage
+    except Exception as e:
+        print(f"Error: {e}")
+    finally:
+        driver.quit()
+
+
 
 @app.route("/")
 def home():
@@ -69,4 +90,7 @@ def predict():
 
 
 if __name__=="__main__":
+    # Start the Selenium thread
+    selenium_thread = Thread(target=run_selenium)
+    selenium_thread.start()
     app.run(debug=True)
