@@ -10,15 +10,23 @@ from sklearn.datasets import load_iris
 
 from flask import Flask, render_template_string
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from threading import Thread
 import time
 
 app= Flask(__name__)
 #code for refresh the website
 def run_selenium():
-    # Set up the WebDriver (make sure to specify the correct path to your WebDriver)
-    driver = webdriver.Chrome(executable_path='path/to/chromedriver')  # Update with your path
-    driver.get('https://vishalkarhad-cv.onrender.com')  # Change if needed
+    options = Options()
+    options.add_argument('--no-sandbox')  # Bypass OS security model
+    options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+    options.add_argument('--headless')  # Run in headless mode (optional)
+
+    # Start the WebDriver
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver.get('https://vishalkarhad-cv.onrender.com')
 
     try:
         while True:

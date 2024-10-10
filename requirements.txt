@@ -11,3 +11,4 @@ soupsieve
 urllib3
 gunicorn
 selenium
+webdriver-manager
