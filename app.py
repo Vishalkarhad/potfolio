@@ -8,36 +8,8 @@ import numpy
 from joblib import dump,load
 from sklearn.datasets import load_iris
 
-from flask import Flask, render_template_string
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from threading import Thread
-import time
 
 app= Flask(__name__)
-#code for refresh the website
-def run_selenium():
-    options = Options()
-    options.add_argument('--no-sandbox')  # Bypass OS security model
-    options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
-    options.add_argument('--headless')  # Run in headless mode (optional)
-
-    # Start the WebDriver
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    driver.get('https://vishalkarhad-cv.onrender.com')
-
-    try:
-        while True:
-            time.sleep(240)  # Wait for 4 minutes
-            driver.refresh()  # Refresh the webpage
-    except Exception as e:
-        print(f"Error: {e}")
-    finally:
-        driver.quit()
-
-
 
 @app.route("/")
 def home():
@@ -98,7 +70,4 @@ def predict():
 
 
 if __name__=="__main__":
-    # Start the Selenium thread
-    selenium_thread = Thread(target=run_selenium)
-    selenium_thread.start()
     app.run(debug=True)
